@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Artem Chornenkyi — Front-End Developer</title>
+<meta name="description" content="Front-end developer in Wrocław. Hand-coded, fast landing pages. See three recent builds." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#FBFAF7;
+    --paper-2:#F1EFE8;
+    --ink:#16181D;
+    --ink-soft:#5A5F6B;
+    --accent:#2A3AE0;
+    --accent-deep:#1A26A6;
+    --line:#E4E2DA;
+    --live:#1FA971;
+    --display:"Bricolage Grotesque",system-ui,sans-serif;
+    --body:"Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  html{scroll-behavior:smooth}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  .wrap{
+    width:100%;
+    max-width:1060px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .monogram{
+    font-family:var(--display);
+    font-weight:800;
+    font-size:18px;
+    letter-spacing:-0.02em;
+    text-decoration:none;
+    color:var(--ink);
+  }
+  .monogram span{color:var(--accent)}
+  .topbar nav{
+    display:flex;
+    gap:26px;
+    align-items:center;
+  }
+  .topbar nav a{
+    font-family:var(--mono);
+    font-size:12.5px;
+    font-weight:500;
+    letter-spacing:0.02em;
+    text-decoration:none;
+    color:var(--ink-soft);
+    transition:color .18s ease;
+  }
+  .topbar nav a:hover{color:var(--accent)}
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:84px 0 72px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    font-family:var(--mono);
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:28px;
+  }
+  .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--live);
+    box-shadow:0 0 0 4px rgba(31,169,113,.16);
+  }
+  .hero h1{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(38px,6.4vw,72px);
+    line-height:1.02;
+    letter-spacing:-0.035em;
+    max-width:16ch;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--accent);
+  }
+  .hero p{
+    margin-top:26px;
+    max-width:52ch;
+    font-size:clamp(16px,1.9vw,18.5px);
+    color:var(--ink-soft);
+  }
+  .hero p b{color:var(--ink);font-weight:600}
+
+  /* ---------- work index ---------- */
+  .section-label{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    padding:40px 0 6px;
+  }
+  .section-label h2{
+    font-family:var(--mono);
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .section-label span{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+
+  .index{
+    border-top:1px solid var(--ink);
+  }
+  .row{
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    align-items:center;
+    gap:28px;
+    padding:30px 22px;
+    border-bottom:1px solid var(--line);
+    text-decoration:none;
+    color:var(--ink);
+    position:relative;
+    isolation:isolate;
+    transition:color .22s ease, padding-left .28s cubic-bezier(.2,.7,.3,1);
+  }
+  .row::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:-1;
+    background:var(--accent);
+    transform:scaleY(0);
+    transform-origin:bottom;
+    transition:transform .28s cubic-bezier(.2,.7,.3,1);
+  }
+  .row:hover,.row:focus-visible{
+    color:#fff;
+    padding-left:34px;
+    outline:none;
+  }
+  .row:hover::before,.row:focus-visible::before{transform:scaleY(1)}
+  .row:focus-visible{box-shadow:inset 0 0 0 2px var(--accent-deep)}
+
+  .num{
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink-soft);
+    transition:color .22s ease;
+    padding-top:6px;
+    align-self:start;
+  }
+  .row:hover .num,.row:focus-visible .num{color:rgba(255,255,255,.75)}
+
+  .meta .name{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(26px,4vw,40px);
+    line-height:1.05;
+    letter-spacing:-0.02em;
+  }
+  .meta .desc{
+    margin-top:7px;
+    font-size:15px;
+    color:var(--ink-soft);
+    transition:color .22s ease;
+  }
+  .row:hover .desc,.row:focus-visible .desc{color:rgba(255,255,255,.82)}
+
+  .tag{
+    margin-top:11px;
+    font-family:var(--mono);
+    font-size:11.5px;
+    letter-spacing:0.04em;
+    color:var(--ink-soft);
+    transition:color .22s ease;
+  }
+  .row:hover .tag,.row:focus-visible .tag{color:rgba(255,255,255,.7)}
+
+  .arrow{
+    font-size:26px;
+    color:var(--ink-soft);
+    transition:transform .28s cubic-bezier(.2,.7,.3,1), color .22s ease;
+    align-self:center;
+  }
+  .row:hover .arrow,.row:focus-visible .arrow{
+    color:#fff;
+    transform:translate(6px,-6px);
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:64px 0 80px;
+  }
+  footer .cta{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(22px,3vw,30px);
+    letter-spacing:-0.02em;
+    max-width:24ch;
+  }
+  footer .links{
+    margin-top:28px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px 28px;
+  }
+  footer .links a{
+    font-family:var(--mono);
+    font-size:13.5px;
+    font-weight:500;
+    text-decoration:none;
+    color:var(--ink);
+    border-bottom:1.5px solid var(--accent);
+    padding-bottom:2px;
+    transition:color .18s ease;
+  }
+  footer .links a:hover{color:var(--accent)}
+  footer .signoff{
+    margin-top:46px;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:600px){
+    .topbar nav{gap:18px}
+    .hero{padding:56px 0 50px}
+    .row{gap:16px;padding:24px 14px;grid-template-columns:auto 1fr auto}
+    .row:hover,.row:focus-visible{padding-left:20px}
+    .num{font-size:12px}
+    .arrow{font-size:22px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;scroll-behavior:auto!important}
+    .row::before{transition:none!important}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header class="topbar">
+      <a class="monogram" href="#">Artem Chornenkyi<span>.</span></a>
+      <nav>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+        <a href="https://github.com/Artem2459" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow"><span class="dot" aria-hidden="true"></span>Front-end developer — Wrocław, PL — available for work</div>
+      <h1>Clean, fast landing pages, <em>coded by hand</em> — not dragged from a template.</h1>
+      <p><b>Artem Chornenkyi.</b> Front-end developer and Business Informatics student in Wrocław. I build responsive, lightweight pages in HTML, CSS, and JavaScript. Three recent builds below — open any of them live.</p>
+    </section>
+
+    <main id="work">
+      <div class="section-label">
+        <h2>Selected work</h2>
+        <span>2025 — 2026</span>
+      </div>
+
+      <div class="index">
+
+        <a class="row" href="STRIDE.html">
+          <div class="num">01</div>
+          <div class="meta">
+            <div class="name">STRIDE</div>
+            <div class="desc">Responsive landing page with a bold, modern layout and a strong visual rhythm.</div>
+            <div class="tag">HTML · CSS · JavaScript</div>
+          </div>
+          <div class="arrow" aria-hidden="true">↗</div>
+        </a>
+
+        <a class="row" href="Pulse.html">
+          <div class="num">02</div>
+          <div class="meta">
+            <div class="name">Pulse</div>
+            <div class="desc">Conversion-focused single page — structured sections and clear calls to action.</div>
+            <div class="tag">HTML · CSS · JavaScript</div>
+          </div>
+          <div class="arrow" aria-hidden="true">↗</div>
+        </a>
+
+        <a class="row" href="Otis.html">
+          <div class="num">03</div>
+          <div class="meta">
+            <div class="name">Otis</div>
+            <div class="desc">Lightweight build with careful typography, spacing, and a smooth feel.</div>
+            <div class="tag">HTML · CSS · JavaScript</div>
+          </div>
+          <div class="arrow" aria-hidden="true">↗</div>
+        </a>
+
+      </div>
+    </main>
+
+    <footer id="contact">
+      <div class="cta">Have a page that needs building? Let's talk.</div>
+      <div class="links">
+        <a href="mailto:temache888@gmail.com">temache888@gmail.com</a>
+        <a href="https://github.com/Artem2459" target="_blank" rel="noopener">github.com/Artem2459</a>
+      </div>
+      <div class="signoff">© 2026 Artem Chornenkyi — built by hand in Wrocław.</div>
+    </footer>
+
+  </div>
+</body>
+</html>
