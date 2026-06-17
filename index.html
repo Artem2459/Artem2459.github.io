@@ -191,6 +191,26 @@
     line-height:1.05;
     letter-spacing:-0.02em;
   }
+  .badge{
+    display:inline-block;
+    vertical-align:middle;
+    margin-left:14px;
+    transform:translateY(-3px);
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    border:1.5px solid var(--accent);
+    border-radius:999px;
+    padding:3px 11px;
+    transition:color .22s ease, border-color .22s ease;
+  }
+  .row:hover .badge,.row:focus-visible .badge{
+    color:#fff;
+    border-color:rgba(255,255,255,.7);
+  }
   .meta .desc{
     margin-top:7px;
     font-size:15px;
@@ -300,7 +320,7 @@
         <a class="row" href="STRIDE.html">
           <div class="num">01</div>
           <div class="meta">
-            <div class="name">STRIDE</div>
+            <div class="name">STRIDE <span class="badge">Concept</span></div>
             <div class="desc">Responsive landing page with a bold, modern layout and a strong visual rhythm.</div>
             <div class="tag">HTML · CSS · JavaScript</div>
           </div>
